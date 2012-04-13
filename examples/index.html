@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>jQuery scrollMotion - A stop motion animation scroll plugin for jQuery</title>
+	<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+	
+	<a href="http://github.com/benpalmer/jquery.scrollmotion"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
+	
+	<nav>
+		<ul>
+			<li><a href="#examples" class="active">Examples</a></li>
+			<li><a href="#userguide">User Guide</a></li>
+			<li><a href="#options">Options</a></li>
+			<li><a href="#">Download</a></li>
+		</ul>
+	</nav>
+	
+	<div class="container">
+		<section id="intro">
+			<h1>jQuery scrollMotion</h1>
+			<p>The jQuery scollMotion plugin is an animation plugin that plays through a series of images depending upon where the current scroll window position is in relation to start and end points.</p>
+			<dl>
+				<dt>Version</dt>
+					<dd>1.1</dd>
+				<dt>Minified Filesize</dt>
+					<dd>3Kb</dd>
+				<dt>Licence</dt>
+					<dd>MIT/GPL</dd>
+				<dt>Browser Support</dt>
+					<dd>IE 6/7/8,Chrome,Safari,Firefox,Opera</dd>
+			</dl>
+			<p><a href="#" class="btn">Download <span>Ver 1.1</span></a></p>
+		</section>
+		
+		<section id="examples">
+			<h2>Examples</h2>
+			
+			<h3>Basic Setup</h3>
+			<p>Vanilla nom. Just uses 0 as <code>top</code> and the y value of the scrollMotion container for the <code>bottom</code> value.</p>
+			<pre class="prettyprint">
+<code>
+$('#example1').scrollMotion();
+</code>
+			</pre>
+			
+			<h3>Manual Break Points</h3>
+			<p>Set the <code>top</code> and <code>bottom</code> values manually for better control.</p>
+			<pre class="prettyprint">
+<code>
+$('#example2').scrollMotion({
+	top : 400,
+	bottom : 800 	
+});
+</code>
+			</pre>
+			
+			<h3>Appearance</h3>
+			<p>You can reveal the animation in relation to the progress through it.</p>
+			<pre class="prettyprint">
+<code>
+$('#example3').scrollMotion({
+	fadeIn : true
+});
+</code>
+			</pre>
+			
+			<h3>Non-destructive Animations</h3>
+			<p>If you are building something in the animation, you might not want the animation to go backwards on the way up. So just add the <code>oneway</code> option and it will stop once the last frame is reached. </p>
+			<pre class="prettyprint">
+<code>
+$('#example4').scrollMotion({
+	oneway : true
+});
+</code>
+			</pre>
+			
+			<h3>Chaining</h3>
+			<p>Animation element is initialised then hidden and faded in.</p>
+			<pre class="prettyprint">
+<code>
+$('#example4').scrollMotion({
+	top : 100,
+	bottom : 300,
+	oneway : true
+})
+.hide()
+.fadeIn(1000);
+</code>
+			</pre>
+			
+		</section>
+		
+		<section id="userguide">
+			<h2>User Guide</h2>
+			<p>Just add jQuery above 1.4.3 onto the page as well as the plugin script.</p>
+			<p>Add a container element with the images in the order required:</p>
+			<pre class="prettyprint lang-html">
+<code>
+&lt;div class=&quot;animation&quot;&gt;
+	&lt;img src=&quot;img/frame1.jpg&quot; width=&quot;640&quot; height=&quot;480&quot; /&gt;
+	&lt;img src=&quot;img/frame2.jpg&quot; width=&quot;640&quot; height=&quot;480&quot; /&gt;
+	&lt;img src=&quot;img/frame3.jpg&quot; width=&quot;640&quot; height=&quot;480&quot; /&gt;
+	&lt;img src=&quot;img/frame4.jpg&quot; width=&quot;640&quot; height=&quot;480&quot; /&gt;
+	&lt;img src=&quot;img/frame5.jpg&quot; width=&quot;640&quot; height=&quot;480&quot; /&gt;
+&lt;/div&gt;
+</code>
+			</pre>
+			<p>Add the container CSS so it is the same width and height as the images.</p>
+			<pre class="prettyprint lang-css">
+<code>
+.animation {
+	width:640px;
+	height:480px;
+	overflow:hidden;
+	/* works well with absolute positioning */
+	position:absolute;
+	top:400px;
+}
+</code>
+			</pre>
+			<p>Then simply initialise the code on the element.</p>
+			<pre class="prettyprint">
+<code>
+/* best to set the top and bottom on absolute positioned elements */
+$('.animation').scrollMotion({
+	top : 400,
+	bottom : 800
+});
+</code>
+			</pre>
+		</section>
+		
+		<section id="options">
+			<h2>Options</h2>
+			<p>The following are options you can override by just using a hash when you call the plugin like on any of the examples.</p>
+			<pre class="prettyprint lang-js">
+<code>
+$.fn.scrollMotion.settings = {
+	top : 100,	/* where animation starts */
+	bottom : 300,	/* where animation ends */
+	oneway : false,	/* if animation stops on completion */
+	fadeIn : false	/* opacity of element same as % complete */
+};
+</code>
+			</pre>
+		</section>
+		
+		<section id="notes">
+			<h2>Notes</h2>
+
+			<h3>Dependencies</h3>
+			<p>jQuery 1.4.3 or above</p>
+			
+			<h3>To Do</h3>
+			<ul>
+				<li>Add support for callback methods.</li>
+				<li>Add <code>loop</code> for animating an element over and over.</li>
+			</ul>
+			
+			<h3>Support</h3>
+			<ul>
+				<li>Please use the <a href="https://github.com/benpalmer/jquery.scrollMotion/issues">issue tracker</a> on the Github repo for support.</li>
+			</ul>
+		</section>
+		
+	</div>
+	
+<script src="assets/js/jquery-1.7.2.js"></script>
+<script src="assets/js/prettify.js"></script>
+<script src="assets/js/lang-css.js"></script>
+<script src="../jquery.scrollmotion.js"></script>
+<script type="text/javascript">
+	
+	$(function(){
+	
+		/* Basic usage where top and bottom are scrollTop() and y value of scrollMotion element */
+		$('#a').scrollMotion();
+		
+		/* Allows the scrollMotion element to appear the further you get through the scroll */
+		$('#b').scrollMotion({
+			fadeIn : true
+		});
+		
+		/* Set the top and bottom values for the scrollMotion object */
+		$('#c').scrollMotion({
+			top : 300,
+			bottom : 700
+		});
+		
+		/* Once animation is complete, final image in sequence is shown */
+		$('#d').scrollMotion({
+			oneway : true
+		});
+	
+		/* Just for code formating */
+		prettyPrint();
+		
+	});
+	
+</script>
+</body>
+</html>
